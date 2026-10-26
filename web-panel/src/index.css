@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@theme inline {
+    --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --deck-bg: #07080B;
+    --deck-surface-0: rgba(20, 23, 31, 0.88);
+    --deck-surface-1: rgba(28, 32, 42, 0.85);
+    --deck-line: rgba(255, 255, 255, 0.06);
+    --deck-line-2: rgba(255, 255, 255, 0.10);
+    --deck-fg: #F2F4F8;
+    --deck-fg-2: #B6BCCB;
+    --deck-fg-3: #7F8699;
+    --deck-fg-4: #535A6B;
+    --deck-accent: #00ffd5;
+    --background: oklch(0.122 0.022 255);
+    --foreground: oklch(0.968 0.016 96);
+    --card: oklch(0.18 0.028 252);
+    --card-foreground: oklch(0.968 0.016 96);
+    --popover: oklch(0.16 0.026 252);
+    --popover-foreground: oklch(0.968 0.016 96);
+    --primary: oklch(0.812 0.184 142);
+    --primary-foreground: oklch(0.13 0.032 145);
+    --secondary: oklch(0.251 0.046 252);
+    --secondary-foreground: oklch(0.92 0.025 94);
+    --muted: oklch(0.235 0.031 252);
+    --muted-foreground: oklch(0.72 0.025 248);
+    --accent: oklch(0.742 0.153 55);
+    --accent-foreground: oklch(0.16 0.028 50);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.32 0.042 252);
+    --input: oklch(0.255 0.038 252);
+    --ring: oklch(0.812 0.184 142);
+    --radius: 0.5rem;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply min-h-svh bg-background text-foreground antialiased;
+    }
+
+    html {
+        @apply font-sans;
+    }
+}
+
+@layer utilities {
+    .remote-scrollbar-hidden {
+        scrollbar-width: none;
+    }
+
+    .remote-scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    .remote-range {
+        appearance: none;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 999px;
+        height: 4px;
+        outline: none;
+        accent-color: var(--deck-accent);
+    }
+
+    .remote-range::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 999px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .remote-range::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 999px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .remote-glass-header {
+        background: linear-gradient(180deg, rgba(18, 20, 27, 0.72), rgba(10, 12, 17, 0.48));
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 14px 34px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(24px) saturate(160%);
+    }
+
+    .remote-glass-drawer {
+        background: linear-gradient(180deg, rgba(17, 19, 26, 0.70), rgba(10, 12, 17, 0.52));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 30px 80px rgba(0, 0, 0, 0.46);
+        backdrop-filter: blur(38px) saturate(165%);
+    }
+
+    .remote-drawer-overlay {
+        background: rgba(0, 0, 0, 0.45);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+    }
+
+    .remote-drawer-panel {
+        background: linear-gradient(180deg, rgba(17, 19, 26, 0.90), rgba(10, 12, 17, 0.82));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 30px 80px rgba(0, 0, 0, 0.46);
+        -webkit-backdrop-filter: blur(22px) saturate(155%);
+        backdrop-filter: blur(22px) saturate(155%);
+        transform: translateZ(0);
+        contain: layout paint style;
+        backface-visibility: hidden;
+    }
+
+    .remote-drawer-panel[data-open="true"] {
+        will-change: transform;
+    }
+
+    .remote-drawer-panel[data-open="false"] {
+        will-change: auto;
+    }
+
+    @media (pointer: coarse) {
+        .remote-drawer-overlay {
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
+        .remote-drawer-panel {
+            background: linear-gradient(180deg, rgba(17, 19, 26, 0.97), rgba(10, 12, 17, 0.95));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 18px 48px rgba(0, 0, 0, 0.40);
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
+        .remote-drawer-panel .remote-glass-header,
+        .remote-drawer-panel .remote-glass-control {
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
+        .remote-glass-header {
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
+        .remote-glass-control {
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+    }
+
+    .remote-glass-control {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.070), rgba(255, 255, 255, 0.036));
+        border-color: rgba(255, 255, 255, 0.105);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 8px 24px rgba(0, 0, 0, 0.12);
+        backdrop-filter: blur(18px) saturate(150%);
+    }
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
